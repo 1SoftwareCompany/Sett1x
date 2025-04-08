@@ -83,7 +83,7 @@ This is where Settix comes. You can configure the application using the followin
 - machines: defines configurations for specific machine inside a cluster. The COMPUTERNAME is the default ENV VAR in windows.
 - references: merges two jar files. Same rules apply here. You are not allowed to have the duplicate keys in ref and main jars
 
-In order to install the configurations you will have to use Settix.Cli. By default the configurations are applied and stored in environment variables.
+In order to install the configurations you will have to use Sett1x.Cli. By default the configurations are applied and stored in environment variables.
 
 Dynamic Keys (Lists of Strings)
 Settix now supports dynamic keys, which are lists of strings that are initialized when the configuration is first created. However, these dynamic keys are not updated by Pandora after their initial creation. This ensures that their values remain stable across different environments.
