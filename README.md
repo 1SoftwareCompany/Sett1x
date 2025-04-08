@@ -90,4 +90,4 @@ Sett1x now supports dynamic keys, which are lists of strings that are initialize
 
 HardFork
 ========
-1nception is a hard fork from the Pandora library. At the time of the fork Pandora was v4. Sett1x will have its own versioning. In order to avoid conflicts all namespaces will be renamed and a separate nuget package is published `Sett1x`
+Sett1x is a hard fork from the Pandora library. At the time of the fork Pandora was v4. Sett1x will have its own versioning. In order to avoid conflicts all namespaces will be renamed and a separate nuget package is published `Sett1x`
