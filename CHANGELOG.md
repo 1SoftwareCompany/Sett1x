@@ -1,3 +1,10 @@
+# [5.0.0](https://github.com/1SoftwareCompany/Sett1x/compare/v4.0.0...v5.0.0) (2025-04-08)
+
+
+### Bug Fixes
+
+* Set up CI with Azure Pipelines ([f7e662d](https://github.com/1SoftwareCompany/Sett1x/commit/f7e662db02d39947ccad48c96d2daf796408c899))
+
 ## [4.0.2](https://github.com/Elders/Pandora/compare/v4.0.1...v4.0.2) (2025-03-24)
 
 
