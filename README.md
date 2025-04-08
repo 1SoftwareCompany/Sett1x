@@ -1,7 +1,7 @@
 Settix aims to externalize the application configuration. Usually in .NET projects the configuration is done in app/web.config with transformations.
 
 The problem arises when production configuration is needed which should not be part of the application repository because it is an OSS project for example.
-This is where Settix comes. You can configure the application using the following structure and store these files in a separate repository:
+This is where Sett1x comes. You can configure the application using the following structure and store these files in a separate repository:
 
 `ReferenceConfiguration.json`
 ```
@@ -86,7 +86,7 @@ This is where Settix comes. You can configure the application using the followin
 In order to install the configurations you will have to use Sett1x.Cli. By default the configurations are applied and stored in environment variables.
 
 Dynamic Keys (Lists of Strings)
-Settix now supports dynamic keys, which are lists of strings that are initialized when the configuration is first created. However, these dynamic keys are not updated by Pandora after their initial creation. This ensures that their values remain stable across different environments.
+Sett1x now supports dynamic keys, which are lists of strings that are initialized when the configuration is first created. However, these dynamic keys are not updated by Pandora after their initial creation. This ensures that their values remain stable across different environments.
 
 HardFork
 ========
