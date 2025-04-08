@@ -243,6 +243,4 @@ $RECYCLE.BIN/
 
 # Directories which start with '.'
 **/.*/
-Elders.Pandora.Authentication.json
-Elders.Pandora.Git.json
 AssemblyInfo.cs

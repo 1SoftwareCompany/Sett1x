@@ -1,7 +1,7 @@
-Pandora aims to externalize the application configuration. Usually in .NET projects the configuration is done in app/web.config with transformations.
+Settix aims to externalize the application configuration. Usually in .NET projects the configuration is done in app/web.config with transformations.
 
 The problem arises when production configuration is needed which should not be part of the application repository because it is an OSS project for example.
-This is where Pandora comes. You can configure the application using the following structure and store these files in a separate repository:
+This is where Settix comes. You can configure the application using the following structure and store these files in a separate repository:
 
 `ReferenceConfiguration.json`
 ```
@@ -83,7 +83,11 @@ This is where Pandora comes. You can configure the application using the followi
 - machines: defines configurations for specific machine inside a cluster. The COMPUTERNAME is the default ENV VAR in windows.
 - references: merges two jar files. Same rules apply here. You are not allowed to have the duplicate keys in ref and main jars
 
-In order to install the configurations you will have to use Pandora.Cli. By default the configurations are applied and stored in environment variables.
+In order to install the configurations you will have to use Settix.Cli. By default the configurations are applied and stored in environment variables.
 
 Dynamic Keys (Lists of Strings)
-Pandora now supports dynamic keys, which are lists of strings that are initialized when the configuration is first created. However, these dynamic keys are not updated by Pandora after their initial creation. This ensures that their values remain stable across different environments.
+Settix now supports dynamic keys, which are lists of strings that are initialized when the configuration is first created. However, these dynamic keys are not updated by Pandora after their initial creation. This ensures that their values remain stable across different environments.
+
+HardFork
+========
+1nception is a hard fork from the Pandora library. At the time of the fork Pandora was v4. Sett1x will have its own versioning. In order to avoid conflicts all namespaces will be renamed and a separate nuget package is published `Sett1x`

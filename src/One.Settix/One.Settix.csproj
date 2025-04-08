@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Sett1x</PackageId>
+    <Product>Sett1x</Product>
+    <Title>Sett1x</Title>
+
+    <Authors>1Software</Authors>
+    <Copyright>Copyright © 1Software</Copyright>
+
+    <Description>Sett1x allows external configuration for your projects</Description>
+    <PackageTags>Configuration Json Environment Environments Staging Production Dev Local</PackageTags>
+
+    <PackageProjectUrl>https://github.com/1SoftwareCompany/Sett1x.git</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/1SoftwareCompany/Sett1x</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyName>One.Settix</AssemblyName>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <EmbedSources>true</EmbedSources>
+    <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+</Project>

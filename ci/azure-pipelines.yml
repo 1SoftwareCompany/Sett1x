@@ -1,6 +1,6 @@
 ---
 variables:
-  PROJECT_DIR: Elders.Pandora
+  PROJECT_DIR: One.Settix
 
 trigger:
   branches:
