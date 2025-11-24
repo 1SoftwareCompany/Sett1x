@@ -1,3 +1,10 @@
+# [6.0.0](https://github.com/1SoftwareCompany/Sett1x/compare/v5.0.0...v6.0.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* update pipeline ([dcbfcf2](https://github.com/1SoftwareCompany/Sett1x/commit/dcbfcf26ef0b6b44ce93b43e552c67ee4101c95c))
+
 # [5.0.0](https://github.com/1SoftwareCompany/Sett1x/compare/v4.0.0...v5.0.0) (2025-04-08)
 
 
