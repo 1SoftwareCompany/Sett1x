@@ -11,6 +11,7 @@ namespace One.Settix
         public const string ClusterKey = "settix_cluster";
         public const string ApplicationKey = "settix_application";
         public const string MachineKey = "settix_machine";
+        public const string GlobalApplicationKey = "settix_global_application";
 
 
         /// <summary>
@@ -38,6 +39,15 @@ namespace One.Settix
         public static string GetMachine()
         {
             return GetEnvironmentVariable(MachineKey, MachineOldKey);
+        }
+
+        /// <summary>
+        /// Gets the global application name stored in <see cref="GlobalApplicationKey"/> environment variable
+        /// </summary>
+        /// <returns>Returns the global application name</returns>
+        public static string GetGlobalApplication()
+        {
+            return GetEnvironmentVariable(GlobalApplicationKey);
         }
 
         public static string GetEnvironmentVariable(string key, string fallback)

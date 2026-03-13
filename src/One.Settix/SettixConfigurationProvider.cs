@@ -29,6 +29,9 @@ namespace One.Settix
             Data.Add(EnvVar.MachineKey, settix.ApplicationContext.Machine);
             Data.Add(EnvVar.ClusterKey, settix.ApplicationContext.Cluster);
 
+            if (settix.GlobalContext != null)
+                Data.Add(EnvVar.GlobalApplicationKey, settix.GlobalContext.ApplicationName);
+
             OnReload();  // Notifies the change to the ConfigurationProvider. This will trigger the reload of the ConfigurationProvider.
         }
     }

@@ -18,11 +18,17 @@ namespace One.Settix
         {
             this.context = context;
             this.cfgRepo = configurationRepository;
+
+            string globalApp = EnvVar.GetGlobalApplication();
+            if (!string.IsNullOrEmpty(globalApp))
+                GlobalContext = new GlobalContext(globalApp);
         }
 
         public Settix(ISettixFactory factory) : this(factory.GetContext(), factory.GetConfiguration()) { }
 
         public ISettixContext ApplicationContext { get { return context; } }
+
+        public ISettixContext GlobalContext { get; private set; }
 
         public Task<string> GetAsync(string settingKey)
         {
@@ -74,6 +80,30 @@ namespace One.Settix
         }
 
         public IEnumerable<DeployedSetting> GetAll(ISettixContext context)
+            => GetAll(context, GlobalContext);
+
+        public IEnumerable<DeployedSetting> GetAll(ISettixContext context, ISettixContext globalContext)
+        {
+            IEnumerable<DeployedSetting> appSettings = GetAllResolved(context);
+
+            if (globalContext == null)
+                return appSettings;
+
+            IEnumerable<DeployedSetting> globalSettings = GetAllResolved(globalContext);
+
+            var conflicting = globalSettings
+                .Select(x => x.Key.SettingKey)
+                .Intersect(appSettings.Select(x => x.Key.SettingKey), StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            if (conflicting.Any())
+                throw new InvalidOperationException(
+                    $"Global and app config have conflicting keys: {string.Join(", ", conflicting)}");
+
+            return globalSettings.Concat(appSettings);
+        }
+
+        private IEnumerable<DeployedSetting> GetAllResolved(ISettixContext context)
         {
             try
             {
@@ -122,78 +152,56 @@ namespace One.Settix
                 Console.WriteLine($"Settix configuration error: {ex.Message}");
                 return Enumerable.Empty<DeployedSetting>();
             }
+        }
 
-            static List<DeployedSetting> ParseNestedSetting(JsonElement element, Key key, int? index = null)
+        static List<DeployedSetting> ParseNestedSetting(JsonElement element, Key key, int? index = null)
+        {
+            var result = new List<DeployedSetting>();
+
+            if (element.ValueKind == JsonValueKind.Object)
             {
-                var result = new List<DeployedSetting>();
-
-                if (element.ValueKind == JsonValueKind.Object)
+                foreach (var prop in element.EnumerateObject())
                 {
-                    foreach (var prop in element.EnumerateObject())
-                    {
-                        var settingKey = $"{key.SettingKey}:{prop.Name}";
-                        if (index.HasValue)
-                            settingKey = $"{key.SettingKey}:{index.Value}:{prop.Name}";
+                    var settingKey = $"{key.SettingKey}:{prop.Name}";
+                    if (index.HasValue)
+                        settingKey = $"{key.SettingKey}:{index.Value}:{prop.Name}";
 
-                        var newKey = new Key(key.ApplicationName, key.Cluster, key.Machine, settingKey);
-                        var nested = ParseNestedSetting(prop.Value, newKey);
-                        result.AddRange(nested);
-                    }
+                    var newKey = new Key(key.ApplicationName, key.Cluster, key.Machine, settingKey);
+                    var nested = ParseNestedSetting(prop.Value, newKey);
+                    result.AddRange(nested);
                 }
-                else if (element.ValueKind == JsonValueKind.Array)
-                {
-                    var i = 0;
-                    foreach (var arrayItem in element.EnumerateArray())
-                    {
-                        var newKey = key;
-                        if (index.HasValue)
-                            newKey = key.WithSettingKey($"{key.SettingKey}:{index.Value}");
-
-                        var nested = ParseNestedSetting(arrayItem, newKey, i++);
-                        result.AddRange(nested);
-                    }
-                }
-                else
+            }
+            else if (element.ValueKind == JsonValueKind.Array)
+            {
+                var i = 0;
+                foreach (var arrayItem in element.EnumerateArray())
                 {
                     var newKey = key;
                     if (index.HasValue)
                         newKey = key.WithSettingKey($"{key.SettingKey}:{index.Value}");
 
-                    var value = element.ToString();
-                    if (string.IsNullOrEmpty(value))
-                    {
-                        Console.WriteLine($"Missing Settix setting value for key {newKey.SettingKey}");
-                    }
-                    else
-                    {
-                        result.Add(new DeployedSetting(newKey, value));
-                    }
+                    var nested = ParseNestedSetting(arrayItem, newKey, i++);
+                    result.AddRange(nested);
                 }
-
-                return result;
             }
-        }
+            else
+            {
+                var newKey = key;
+                if (index.HasValue)
+                    newKey = key.WithSettingKey($"{key.SettingKey}:{index.Value}");
 
-        public Task SetAsync(string settingKey, string value)
-        {
-            return SetAsync(settingKey, value, context);
-        }
+                var value = element.ToString();
+                if (string.IsNullOrEmpty(value))
+                {
+                    Console.WriteLine($"Missing Settix setting value for key {newKey.SettingKey}");
+                }
+                else
+                {
+                    result.Add(new DeployedSetting(newKey, value));
+                }
+            }
 
-        public Task SetAsync(string settingKey, string value, ISettixContext context)
-        {
-            var settingName = NameBuilder.GetSettingName(context.ApplicationName, context.Cluster, context.Machine, settingKey);
-            return cfgRepo.SetAsync(settingName, value);
-        }
-
-        public Task DeleteAsync(string settingKey)
-        {
-            return DeleteAsync(settingKey, context);
-        }
-
-        public Task DeleteAsync(string settingKey, ISettixContext context)
-        {
-            var settingName = NameBuilder.GetSettingName(context.ApplicationName, context.Cluster, context.Machine, settingKey);
-            return cfgRepo.DeleteAsync(settingName);
+            return result;
         }
     }
 }
