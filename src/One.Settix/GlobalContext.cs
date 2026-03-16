@@ -10,7 +10,7 @@ namespace One.Settix
         {
             ApplicationName = applicationName;
             Cluster = cluster ?? EnvVar.GetCluster();
-            Machine = machine ?? EnvVar.GetMachine() ?? Box.Machine.NotSpecified;
+            Machine = Box.Machine.NotSpecified;
         }
 
         public string ApplicationName { get; private set; }
