@@ -1,3 +1,17 @@
+# [6.1.0](https://github.com/1SoftwareCompany/Sett1x/compare/v6.0.0...v6.1.0) (2026-03-17)
+
+
+### Bug Fixes
+
+* FIxing machine for global configs ([f1e59d2](https://github.com/1SoftwareCompany/Sett1x/commit/f1e59d225de16984492b4ba1c38b25b3634ae4ce))
+* Fixing the test after the last fix ([8830ecb](https://github.com/1SoftwareCompany/Sett1x/commit/8830ecb2facc3ec2a641060f35844a39da946206))
+
+
+### Features
+
+* Add global configs ([07ef78d](https://github.com/1SoftwareCompany/Sett1x/commit/07ef78d8287ff86d6880debf560b17598709eb08))
+* Global configurations ([f98f34a](https://github.com/1SoftwareCompany/Sett1x/commit/f98f34aaf3b670bdeb67d025b2f9306738f89d60))
+
 # [6.0.0](https://github.com/1SoftwareCompany/Sett1x/compare/v5.0.0...v6.0.0) (2025-11-24)
 
 
