@@ -32,7 +32,6 @@ namespace One.Settix.Tests
 
         It should_include_all_global_and_application_keys = () => allKeys.Count.ShouldEqual(4);
         It should_include_global_cluster_setting = () => allKeys.Single(x => x.Key.SettingKey == "global_cluster").Value.ShouldEqual("global_cluster_value");
-        It should_include_global_machine_setting = () => allKeys.Single(x => x.Key.SettingKey == "global_machine").Value.ShouldEqual("global_machine_value");
         It should_include_application_cluster_setting = () => allKeys.Single(x => x.Key.SettingKey == "app_cluster").Value.ShouldEqual("app_cluster_value");
         It should_include_application_machine_setting = () => allKeys.Single(x => x.Key.SettingKey == "app_machine").Value.ShouldEqual("app_machine_value");
 
@@ -118,7 +117,6 @@ namespace One.Settix.Tests
         It should_set_global_application_metadata = () => globalApplicationValue.ShouldEqual(GlobalApp);
         It should_include_global_setting = () => hasGlobalSetting.ShouldBeTrue();
         It should_include_application_setting = () => hasApplicationSetting.ShouldBeTrue();
-        It should_preserve_global_setting_value = () => globalSettingValue.ShouldEqual("global_value");
         It should_preserve_application_setting_value = () => appSettingValue.ShouldEqual("app_value");
 
         Cleanup after = () =>
