@@ -6,7 +6,7 @@ namespace One.Settix
 {
     public static class GlobalKeyConvention
     {
-        public const string Prefix = "settix.global.";
+        public const string Prefix = "settix:global:";
 
         public static string ToGlobalKey(this string key)
             => $"{Prefix}{key}";
