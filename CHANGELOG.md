@@ -1,3 +1,12 @@
+## [6.1.2](https://github.com/1SoftwareCompany/Sett1x/compare/v6.1.1...v6.1.2) (2026-07-03)
+
+
+### Bug Fixes
+
+*  dependabot ([4f55557](https://github.com/1SoftwareCompany/Sett1x/commit/4f555572d6c7d828d3062e775d1b05d51220ad17))
+* Bump Machine.Specifications.Runner.VisualStudio from 2.10.2 to 2.10.3 ([3cc0b4b](https://github.com/1SoftwareCompany/Sett1x/commit/3cc0b4b19c607fa2088a8202b12995269610b301))
+* Bump Microsoft.Extensions.Configuration from 10.0.0 to 10.0.9 ([9370834](https://github.com/1SoftwareCompany/Sett1x/commit/937083454f5c3db35e14d32efcef06c07976a30e))
+
 ## [6.1.1](https://github.com/1SoftwareCompany/Sett1x/compare/v6.1.0...v6.1.1) (2026-03-18)
 
 
