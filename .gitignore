@@ -244,3 +244,9 @@ $RECYCLE.BIN/
 # Directories which start with '.'
 **/.*/
 AssemblyInfo.cs
+
+
+!.github/
+
+
+!.github/**
