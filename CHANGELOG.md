@@ -1,3 +1,10 @@
+## [6.1.3](https://github.com/1SoftwareCompany/Sett1x/compare/v6.1.2...v6.1.3) (2026-07-15)
+
+
+### Bug Fixes
+
+* Bump Microsoft.Extensions.Configuration from 10.0.9 to 10.0.10 ([7ee5b3a](https://github.com/1SoftwareCompany/Sett1x/commit/7ee5b3a920d130bf4ca6ff3db0b612f970cceb97))
+
 ## [6.1.2](https://github.com/1SoftwareCompany/Sett1x/compare/v6.1.1...v6.1.2) (2026-07-03)
 
 
